@@ -46,7 +46,7 @@
       <h3>Contexte</h3>
       <p>
         Le cluster Hyper-V est administré depuis un serveur Active Directory central. Pour connaître l'état des VM
-        et choisir sur quel nœud en démarrer une, il fallait ouvrir le Gestionnaire Hyper-V nœud par nœud.
+        et choisir sur quel nœud en démarrer une, il fallait ouvrir le Gestionnaire Hyper-V dans le navigateur sur le réseau privé.
         Le but : une vue consolidée, accessible depuis un navigateur.
       </p>
 
@@ -56,7 +56,7 @@
         <li>État de chaque serveur calculé dynamiquement à partir des métriques</li>
         <li>Recommandation du serveur le plus adapté pour démarrer une VM, via un score pondéré (CPU libre, RAM libre, vCPU)</li>
         <li>Démarrage et arrêt d'une VM depuis l'interface</li>
-        <li>Accès protégé par une authentification à compte unique (mot de passe haché avec bcrypt)</li>
+        <li>Accès protégé par une authentification à compte unique sur le réseau interne (mot de passe haché basiquement)</li>
       </ul>
 
       <h3>Architecture</h3>
@@ -87,9 +87,9 @@ Dossier réseau partagé  ◄────────  Script PowerShell (tâche
 
       <h3>Choix techniques</h3>
       <ul>
-        <li>Première version avec un serveur web PowerShell (Pode), abandonnée au profit de PHP sur IIS avec appel PowerShell à la demande.</li>
-        <li>Authentification AD/LDAP remplacée par un compte unique bcrypt, plus simple à déployer.</li>
-        <li>Jeu de 8 fichiers de référence avec une nomenclature en français.</li>
+        <li>Première version avec PHP sur IIS avec appel PowerShell à la demande.</li>
+        <li>Authentification par un compte unique bcrypt, plus simple à déployer.</li>
+        <li>Jeu de 8 fichiers de référence (JSON) avec une nomenclature en français.</li>
       </ul>
 
       <h3>Livrables</h3>
