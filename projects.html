@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets — Pierre | Portfolio BTS SIO SISR</title>
+  <meta name="description" content="Liste des projets réalisés dans le cadre du BTS SIO option SISR.">
+  <meta name="theme-color" content="#0d0c11">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html">pierre<span>@portfolio</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#about">À propos</a></li>
+        <li><a href="index.html#skills">Compétences</a></li>
+        <li><a class="active" href="projects.html">Projets</a></li>
+        <li><a href="index.html#veille">Veille</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a class="nav-cv" href="assets/cv/cv.pdf">CV</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container page-head">
+      <a class="back" href="index.html">← Accueil</a>
+      <p class="section-label">// projets</p>
+      <h1>Tous les projets</h1>
+      <p class="lead">Les réalisations menées pendant le BTS SIO option SISR.</p>
+    </div>
+
+    <section style="padding-top:32px">
+      <div class="container grid">
+        <article class="card project-card">
+          <h3>Dashboard de gestion de cluster Hyper-V</h3>
+          <ul class="chips">
+            <li>PowerShell</li><li>PHP</li><li>IIS</li><li>Hyper-V</li>
+          </ul>
+          <p>Interface web interne pour suivre l'état des machines virtuelles de tous les nœuds du cluster et les démarrer ou les arrêter à distance.</p>
+          <a class="more" href="projet-dashboard-hyperv.html">Lire le détail →</a>
+        </article>
+
+        <article class="card project-card placeholder">
+          <p>Prochain projet à ajouter</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> Pierre — BTS SIO SISR</span>
+      <a href="#top">Retour en haut ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

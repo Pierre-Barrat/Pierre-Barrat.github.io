@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de gestion de cluster Hyper-V — Pierre | Portfolio</title>
+  <meta name="description" content="Interface web PHP/IIS pour superviser et piloter les machines virtuelles d'un cluster Hyper-V, avec un backend de collecte PowerShell.">
+  <meta name="theme-color" content="#0d0c11">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html">pierre<span>@portfolio</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#about">À propos</a></li>
+        <li><a href="index.html#skills">Compétences</a></li>
+        <li><a class="active" href="projects.html">Projets</a></li>
+        <li><a href="index.html#veille">Veille</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a class="nav-cv" href="assets/cv/cv.pdf">CV</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container page-head">
+      <a class="back" href="projects.html">← Tous les projets</a>
+      <p class="section-label">// projet</p>
+      <h1>Dashboard de gestion de cluster Hyper-V</h1>
+      <p class="lead">Une interface web pour voir en un coup d'œil l'état des machines virtuelles du cluster et les piloter à distance.</p>
+    </div>
+
+    <article class="container project-article">
+      <ul class="chips" style="margin-bottom:8px">
+        <li>PowerShell</li><li>Runspace pool</li><li>PHP</li><li>IIS</li>
+        <li>Hyper-V</li><li>JSON</li><li>Tâche planifiée</li><li>bcrypt</li>
+      </ul>
+
+      <h3>Contexte</h3>
+      <p>
+        Le cluster Hyper-V est administré depuis un serveur Active Directory central. Pour connaître l'état des VM
+        et choisir sur quel nœud en démarrer une, il fallait ouvrir le Gestionnaire Hyper-V nœud par nœud.
+        Le but : une vue consolidée, accessible depuis un navigateur.
+      </p>
+
+      <h3>Fonctionnalités</h3>
+      <ul>
+        <li>Tableau des VM de tous les nœuds, avec en-tête fixe et défilement</li>
+        <li>État de chaque serveur calculé dynamiquement à partir des métriques</li>
+        <li>Recommandation du serveur le plus adapté pour démarrer une VM, via un score pondéré (CPU libre, RAM libre, vCPU)</li>
+        <li>Démarrage et arrêt d'une VM depuis l'interface</li>
+        <li>Accès protégé par une authentification à compte unique (mot de passe haché avec bcrypt)</li>
+      </ul>
+
+      <h3>Architecture</h3>
+<pre class="schema">Navigateur
+    │  HTTPS
+    ▼
+Interface PHP (IIS)
+    │  lit / écrit des fichiers JSON
+    ▼
+Dossier réseau partagé  ◄────────  Script PowerShell (tâche planifiée)
+ (état des VM, file d'actions)         │  -ComputerName (accès distant)
+                                       ▼
+                              Nœuds du cluster Hyper-V</pre>
+      <ul>
+        <li><strong>Collecte :</strong> <code>Get-VmdashboardDataV2.ps1</code> s'exécute en tâche planifiée et interroge les nœuds en parallèle (runspace pool).</li>
+        <li><strong>Communication :</strong> un dossier réseau partagé sert de couche d'échange — PowerShell écrit les données en JSON, PHP les lit.</li>
+        <li><strong>Actions :</strong> un clic sur « démarrer » ou « arrêter » dépose une demande dans <code>queue.json</code> (champ <code>action</code>), traitée par le script PowerShell.</li>
+      </ul>
+
+      <h3>Difficultés rencontrées</h3>
+      <ul>
+        <li><strong>Un nœud ralentissait toute la collecte.</strong> Ajout de logs de durée par VM et par appel pour repérer que le nœud hébergeant le plus de VM dominait le temps total.</li>
+        <li><strong>Résultats parallèles traités dans le mauvais ordre.</strong> Remplacement de <code>EndInvoke()</code> par <code>WaitHandle.WaitAny()</code> pour récupérer chaque résultat dès qu'il est prêt.</li>
+        <li><strong>Messages affichés en double.</strong> Cause : le passage de <code>$Host</code> au constructeur du runspace pool.</li>
+        <li><strong>Tâche planifiée qui ne se répétait pas.</strong> Il manquait <code>-RepetitionDuration ([TimeSpan]::MaxValue)</code> dans le déclencheur.</li>
+        <li><strong>Échec de démarrage de VM sur certains commutateurs virtuels.</strong> Ajout d'une fonction <code>Repair-VmNetworkAdapterSwitch</code> exécutée avant <code>Start-VM</code>.</li>
+      </ul>
+
+      <h3>Choix techniques</h3>
+      <ul>
+        <li>Première version avec un serveur web PowerShell (Pode), abandonnée au profit de PHP sur IIS avec appel PowerShell à la demande.</li>
+        <li>Authentification AD/LDAP remplacée par un compte unique bcrypt, plus simple à déployer.</li>
+        <li>Jeu de 8 fichiers de référence avec une nomenclature en français.</li>
+      </ul>
+
+      <h3>Livrables</h3>
+      <ul>
+        <li>Guide de déploiement de A à Z : configuration d'IIS, permissions des dossiers, prérequis WMI et pare-feu, HTTPS.</li>
+      </ul>
+
+      <h3>Captures d'écran</h3>
+      <div class="shots">
+        <!-- À COMPLÉTER : mettez vos captures dans assets/img/ puis remplacez chaque bloc par
+             <div class="shot"><img src="assets/img/dashboard-1.png" alt="Description de la capture"></div> -->
+        <div class="shot todo">[capture du tableau des VM]</div>
+        <div class="shot todo">[capture de la page de connexion]</div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> Pierre — BTS SIO SISR</span>
+      <a href="#top">Retour en haut ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
