@@ -1,35 +1,38 @@
 // Menu mobile
-const toggle = document.querySelector('.nav-toggle');
-const links = document.getElementById('nav-links');
-if (toggle && links) {
-  toggle.addEventListener('click', () => {
-    const open = links.classList.toggle('open');
+var toggle = document.querySelector('.menu-toggle');
+var menu = document.getElementById('menu');
+if (toggle && menu) {
+  toggle.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
     toggle.setAttribute('aria-expanded', String(open));
   });
-  links.addEventListener('click', (e) => {
+  menu.addEventListener('click', function (e) {
     if (e.target.tagName === 'A') {
-      links.classList.remove('open');
+      menu.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
     }
   });
 }
 
 // Année du pied de page
-const year = document.getElementById('year');
+var year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
-// Lien actif selon la section visible (page d'accueil uniquement)
-const sections = document.querySelectorAll('main section[id]');
-const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        navLinks.forEach((a) =>
-          a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id)
-        );
-      }
+// Surligne le lien de la section visible (menu de l'accueil, sommaire des pages projet)
+var links = document.querySelectorAll('.menu a[href^="#"], .toc a[href^="#"]');
+if (links.length && 'IntersectionObserver' in window) {
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      var current = byId[entry.target.id];
+      if (current) current.setAttribute('aria-current', 'true');
     });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-  sections.forEach((s) => observer.observe(s));
+  }, { rootMargin: '-35% 0px -60% 0px' });
+  Object.keys(byId).forEach(function (id) {
+    var target = document.getElementById(id);
+    if (target) observer.observe(target);
+  });
 }

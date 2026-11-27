@@ -3,178 +3,154 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pierre — BTS SIO SISR | Portfolio</title>
-  <meta name="description" content="Portfolio de Pierre, étudiant en BTS SIO option SISR : administration Windows Server, virtualisation Hyper-V, PowerShell.">
-  <meta name="theme-color" content="#0d0c11">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Pierre Barrat, étudiant en BTS SIO option SISR</title>
+  <meta name="description" content="Pierre Barrat, étudiant en BTS SIO option SISR à INGETIS : réseau, administration Windows Server, virtualisation Hyper-V et PowerShell.">
+  <meta name="theme-color" content="#F2F5F8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0C1621" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Aller au contenu</a>
 
   <header class="site-header">
-    <div class="container nav">
-      <a class="logo" href="index.html">Pierre Barrat<span></a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
-      <ul class="nav-links" id="nav-links">
+    <div class="wrap bar">
+      <a class="brand" href="index.html">Pierre Barrat</a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul class="menu" id="menu">
         <li><a href="#about">À propos</a></li>
         <li><a href="#skills">Compétences</a></li>
         <li><a href="#projects">Projets</a></li>
         <li><a href="#veille">Veille</a></li>
         <li><a href="#contact">Contact</a></li>
-        <!-- À COMPLÉTER : déposez votre CV dans assets/cv/ puis ajustez le nom du fichier -->
-        <li><a class="nav-cv" href="assets/cv/cv.pdf">CV</a></li>
+        <!-- CV : déposez votre PDF dans assets/cv/cv.pdf, puis retirez les marques de commentaire ci-dessous
+        <li><a href="assets/cv/cv.pdf">CV</a></li>
+        -->
       </ul>
     </div>
   </header>
 
   <main id="main">
 
-    <!-- ===================== HERO ===================== -->
     <section class="hero" id="top">
-      <div class="container hero-grid">
+      <div class="wrap hero-grid">
         <div>
-          <p class="prompt">Pierre@portfolio</p>
-          <h1>Pierre <span>Barrat</span></h1>
-          <p class="tagline">Étudiant en BTS SIO, option SISR</p>
-          <p>Je peux m'occuper de tâche réseau et développer des outils internes.</p>
-          <div class="hero-actions">
+          <h1><span>Pierre</span> <span>Barrat</span></h1>
+          <p class="role">Étudiant en BTS SIO, option SISR</p>
+          <p class="intro">Je sais gérer des tâches réseau et développer des outils internes.</p>
+          <div class="actions">
             <a class="btn btn-primary" href="#projects">Voir mes projets</a>
             <a class="btn" href="#contact">Me contacter</a>
           </div>
         </div>
-        <!-- À COMPLÉTER : mettez votre photo dans assets/img/ et remplacez le texte par <img src="assets/img/photo.jpg" alt="Photo de Pierre"> -->
-        <div class="avatar"><span>photo<br>à ajouter</span></div>
-      </div>
-    </section>
 
-    <!-- ===================== À PROPOS ===================== -->
-    <section id="about">
-      <div class="container">
-        <p class="section-label">// à propos</p>
-        <h2>Qui suis-je</h2>
-        <div class="about-grid">
-          <div>
-            <p class="lead">
-              Je prépare le BTS SIO option SISR.
-            </p>
-            <p>Passionné d'informatique depuis petit, j'ai d'abord appris au travers du PC familial à me servir d'ordinateurs puis plus tard j'ai monté mon propre PC,
-              au travers de test et de beaucoup d'erreurs en réseau tout comme en code j'ai d'engrenger des compétences qui m'ont permis de décidé d'en faire mes études.</p>
-          </div>
-          <div class="card">
-            <ul class="facts">
-              <li><span>Formation</span><span>BTS SIO option SISR</span></li>
-              <li><span>Établissement</span><span>INGETIS</span></li>
-              <li><span>Promotion</span><span>2025-2027</span></li>
-              <li><span>Entreprise / stage</span><span>1er stage:Bluecrest</span></li>
-              <li><span>Localisation</span><span>île de France</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== COMPÉTENCES ===================== -->
-    <section id="skills">
-      <div class="container">
-        <p class="section-label">// compétences</p>
-        <h2>Compétences techniques</h2>
-        <div class="grid">
-          <div class="card skill-card">
-            <h3>Systèmes &amp; virtualisation</h3>
-            <ul class="chips">
-              <li>Windows Server</li>
-              <li>Hyper-V</li>
-              <li>Cluster de basculement</li>
-              <li>Active Directory</li>
-            </ul>
-          </div>
-          <div class="card skill-card">
-            <h3>Scripting &amp; automatisation</h3>
-            <ul class="chips">
-              <li>PowerShell</li>
-              <li>Tâches planifiées</li>
-              <li>Runspace pools</li>
-              <li>JSON</li>
-            </ul>
-          </div>
-          <div class="card skill-card">
-            <h3>Web &amp; outils internes</h3>
-            <ul class="chips">
-              <li>PHP</li>
-              <li>IIS</li>
-              <li>HTML / CSS</li>
-              <li>Authentification (bcrypt)</li>
-            </ul>
-          </div>
-          <div class="card skill-card">
-            <h3>Réseau &amp; sécurité</h3>
-            <ul class="chips">
-              <li class="todo">[à compléter]</li>
-            </ul>
-          </div>
-        </div>
-        <p style="margin-top:16px" class="todo">[À COMPLÉTER : ajoutez vos autres compétences (réseau, Linux, outils…) en copiant un bloc &lt;li&gt; dans la liste concernée.]</p>
-      </div>
-    </section>
-
-    <!-- ===================== PROJETS ===================== -->
-    <section id="projects">
-      <div class="container">
-        <p class="section-label">// projets</p>
-        <h2>Projets réalisés</h2>
-        <div class="grid">
-          <article class="card project-card">
-            <h3>Dashboard de gestion de cluster Hyper-V</h3>
-            <ul class="chips">
-              <li>PowerShell</li><li>PHP</li><li>IIS</li><li>Hyper-V</li>
-            </ul>
-            <p>Interface web interne pour suivre l'état des machines virtuelles de tous les nœuds du cluster et les démarrer ou les arrêter à distance.</p>
-            <a class="more" href="projet-dashboard-hyperv.html">Lire le détail →</a>
-          </article>
-
-          <!-- Pour ajouter un projet : copiez le bloc <article> ci-dessus et la page projet-dashboard-hyperv.html -->
-          <article class="card project-card placeholder">
-            <p>Prochain projet à ajouter</p>
-          </article>
-        </div>
-        <p style="margin-top:20px"><a href="projects.html">Voir tous les projets →</a></p>
-      </div>
-    </section>
-
-    <!-- ===================== VEILLE ===================== -->
-    <section id="veille">
-      <div class="container">
-        <p class="section-label">// veille technologique</p>
-        <h2>Veille technologique</h2>
-        <div class="card">
-          <p class="todo">[À COMPLÉTER : vos thèmes de veille, vos sources (flux RSS, sites, newsletters, comptes suivis) et vos fiches de veille datées.]</p>
-          <ul class="list-card">
-            <li>
-              <span class="date todo">[date]</span>
-              <div>
-                <h3 class="todo">[Titre de la fiche de veille]</h3>
-                <p class="todo">[Résumé en une ou deux phrases.]</p>
+        <div aria-hidden="true">
+          <div class="cluster">
+            <div class="node">
+              <b>Nœud 1</b>
+              <div class="vms">
+                <i class="on" style="--i:0"></i><i class="on" style="--i:2"></i><i class="off"></i><i class="on" style="--i:5"></i><i class="on" style="--i:7"></i><i class="on" style="--i:9"></i>
               </div>
-            </li>
-          </ul>
+            </div>
+            <div class="node">
+              <b>Nœud 2</b>
+              <div class="vms">
+                <i class="on" style="--i:1"></i><i class="on" style="--i:4"></i><i class="warn"></i><i class="on" style="--i:8"></i>
+              </div>
+            </div>
+            <div class="node">
+              <b>Nœud 3</b>
+              <div class="vms">
+                <i class="on" style="--i:3"></i><i class="on" style="--i:6"></i><i class="on" style="--i:10"></i><i class="off"></i><i class="on" style="--i:11"></i><i class="on" style="--i:12"></i><i class="on" style="--i:13"></i><i class="on" style="--i:14"></i><i class="off"></i><i class="on" style="--i:15"></i><i class="on" style="--i:16"></i><i class="on" style="--i:17"></i>
+              </div>
+            </div>
+          </div>
+          <p class="cluster-note">Schéma illustratif : des machines virtuelles réparties sur les nœuds d'un cluster.</p>
         </div>
       </div>
     </section>
 
-    <!-- ===================== CONTACT ===================== -->
-    <section id="contact">
-      <div class="container">
-        <p class="section-label">// contact</p>
-        <h2>Me contacter</h2>
-        <div class="card">
-          <ul class="contact-list">
-            <li><span class="k">Email</span><a class="todo" href="mailto:votre.email@exemple.fr">pierre.barrat.ma@gmail.com</a></li>
-            <li><span class="k">GitHub</span><a class="todo" href="https://github.com/votre-pseudo">github.com/PierreBarrat</a></li>
-            <li><span class="k">LinkedIn</span><a class="todo" href="https://www.linkedin.com/in/votre-profil">linkedin.com/in/votre-profil</a></li>
-            <li><span class="k">CV</span><a href="assets/cv/cv.pdf">Télécharger le CV (PDF)</a></li>
+    <section class="section" id="about">
+      <div class="wrap section-grid">
+        <h2>À propos</h2>
+        <div class="section-body">
+          <p class="lead">Passionné d'informatique depuis l'enfance, j'ai appris à me servir d'un ordinateur grâce au PC familial, puis j'ai monté mon propre PC.</p>
+          <p>À force d'essais et de beaucoup d'erreurs, en réseau comme en code, j'ai acquis des compétences qui m'ont décidé à en faire mes études. Je prépare aujourd'hui le BTS SIO option SISR.</p>
+
+          <dl class="rows facts" style="margin-top:36px">
+            <div><dt>Formation</dt><dd>BTS SIO option SISR</dd></div>
+            <div><dt>Établissement</dt><dd>INGETIS</dd></div>
+            <div><dt>Promotion</dt><dd>2025–2027</dd></div>
+            <div><dt>Stage</dt><dd>Bluecrest (1<sup>er</sup>&nbsp;stage)</dd></div>
+            <div><dt>Localisation</dt><dd>Île-de-France</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap section-grid">
+        <h2>Compétences</h2>
+        <div class="section-body">
+          <dl class="rows">
+            <div><dt>Systèmes et virtualisation</dt><dd>Windows Server, Hyper-V, cluster de basculement, Active Directory</dd></div>
+            <div><dt>Scripting et automatisation</dt><dd>PowerShell, tâches planifiées, runspace pools, JSON</dd></div>
+            <div><dt>Web et outils internes</dt><dd>PHP, IIS, HTML et CSS, authentification (bcrypt)</dd></div>
+            <!-- Pour ajouter une ligne (par exemple réseau et sécurité), copiez la ligne ci-dessous :
+            <div><dt>Réseau et sécurité</dt><dd>Vos compétences, séparées par des virgules</dd></div>
+            -->
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="wrap section-grid">
+        <h2>Projets</h2>
+        <div class="section-body">
+          <div class="projects">
+            <article class="project">
+              <h3><a href="projet-dashboard-hyperv.html">Dashboard de gestion de cluster Hyper-V</a></h3>
+              <p>Interface web interne pour suivre l'état des machines virtuelles de tous les nœuds du cluster et les démarrer ou les arrêter à distance.</p>
+              <p class="stack">PowerShell, PHP, IIS, Hyper-V</p>
+            </article>
+            <!-- Pour ajouter un projet : copiez le bloc <article> ci-dessus, changez le texte et le lien,
+                 puis dupliquez la page projet-dashboard-hyperv.html sous un autre nom. -->
+          </div>
+          <a class="more-link" href="projects.html">Tous les projets</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="veille">
+      <div class="wrap section-grid">
+        <h2>Veille technologique</h2>
+        <div class="section-body">
+          <p class="empty">Mes sources et mes fiches de veille seront publiées ici.</p>
+          <!-- Pour ajouter une fiche, remplacez la ligne ci-dessus par un bloc de ce type :
+          <div class="projects">
+            <article class="project">
+              <h3>Titre de la fiche</h3>
+              <p>Résumé en une ou deux phrases.</p>
+              <p class="stack">Date, source</p>
+            </article>
+          </div>
+          -->
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap section-grid">
+        <h2>Contact</h2>
+        <div class="section-body">
+          <a class="mail" href="mailto:pierre.barrat.ma@gmail.com">pierre.barrat.ma@gmail.com</a>
+          <ul class="contact-links">
+            <li><a href="https://github.com/Pierre-Barrat">GitHub</a></li>
+            <!-- LinkedIn : remplacez l'adresse puis retirez les marques de commentaire
+            <li><a href="https://www.linkedin.com/in/votre-profil">LinkedIn</a></li>
+            -->
           </ul>
         </div>
       </div>
@@ -183,9 +159,9 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>© <span id="year">2026</span> Pierre — BTS SIO SISR</span>
-      <a href="#top">Retour en haut ↑</a>
+    <div class="wrap footer-inner">
+      <span>© <span id="year">2026</span> Pierre Barrat</span>
+      <a href="#top">Haut de page</a>
     </div>
   </footer>
 
